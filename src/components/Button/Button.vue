@@ -4,6 +4,7 @@
       :class="classes" 
       :type="type"
       :value="value"
+      @mouseover="onHover"
       @click="onClick"
     />
 
@@ -12,6 +13,8 @@
       :class="classes"
       :href="href"
       :target="target"
+      @click="onClick"
+      @mouseover="onHover"
     >
       <slot></slot>
     </a>
@@ -19,6 +22,7 @@
     <button
       v-else
       :class="classes"
+      @mouseover="onHover"
       @click="onClick"
     > 
       <slot></slot>
@@ -58,6 +62,8 @@ export default {
       type: String,
       required: false,
     },
+
+    // Colors
 
     isPrimary: {
       type: Boolean,
@@ -118,8 +124,57 @@ export default {
       type: Boolean,
       default: false,
     },
-   
+
+    // Sizes
+
+    isSmall: {
+      type: Boolean,
+      default: false,
+    },
+
+    isNormal: {
+      type: Boolean,
+      default: false,
+    },
+
+    isMedium: {
+      type: Boolean,
+      default: false,
+    },
+
+    isLarge: {
+      type: Boolean,
+      default: false,
+    },
+
+    // Displays
+
+    isFullwidth: {
+      type: Boolean,
+      default: false,
+    },
+
+    // Styles
+
+    isInverted: {
+      type: Boolean,
+      default: false,
+    },
+
+    isOutlined: {
+      type: Boolean,
+      default: false,
+    },
+
+    isRounded: {
+      type: Boolean,
+      default: false,
+    },
   },
+
+  data: () => ({
+    isFocused: false,
+  }),
 
   computed: {
     classes () {
@@ -137,6 +192,15 @@ export default {
         'is-success': this.isSuccess,
         'is-warning': this.isWarning,
         'is-danger': this.isDanger,
+        'is-small': this.isSmall,
+        'is-normal': this.isNormal,
+        'is-medium': this.isMedium,
+        'is-large': this.isLarge,
+        'is-fullwidth': this.isFullwidth,
+        'is-inverted': this.isInverted,
+        'is-outlined': this.isOutlined,
+        'is-rounded': this.isRounded,
+        'is-focused': this.isFocused
       }
     },
   },
@@ -144,6 +208,10 @@ export default {
   methods: {
     onClick (e) {
       this.$emit('click', e)
+    },
+
+    onHover (e) {
+      this.$emit('hover', e)
     }
   }
 }
