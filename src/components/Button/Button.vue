@@ -4,7 +4,7 @@
       :class="classes" 
       :type="type"
       :value="value"
-      @mouseover="onHover"
+      @mouseover="onMouseover"
       @click="onClick"
     />
 
@@ -14,7 +14,7 @@
       :href="href"
       :target="target"
       @click="onClick"
-      @mouseover="onHover"
+      @mouseover="onMouseover"
     >
       <slot></slot>
     </a>
@@ -22,7 +22,7 @@
     <button
       v-else
       :class="classes"
-      @mouseover="onHover"
+      @mouseover="onMouseover"
       @click="onClick"
     > 
       <slot></slot>
@@ -210,8 +210,14 @@ export default {
       this.$emit('click', e)
     },
 
-    onHover (e) {
-      this.$emit('hover', e)
+    onMouseover (e) {
+      this.isFocused = true
+      this.$emit('mouseover', e)
+    },
+
+    onMouseleave (e) {
+      this.isFocused = false
+      this.$emit('mouseleave', e)
     }
   }
 }
