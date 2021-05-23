@@ -1,4 +1,5 @@
-# pwa
+
+vue + bulma + sass-loader + twailwind
 
 ## Project setup
 ```
